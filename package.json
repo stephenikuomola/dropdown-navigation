@@ -2,14 +2,6 @@
   "name": "intro-section-with-dropdown-navigation-main",
   "version": "1.0.0",
   "description": "![Design preview for the Intro section with dropdown navigation coding challenge](./assets/design/desktop-preview.jpg)",
-  "source": "index.html",
-  "scripts": {
-    "start": "parcel index.html",
-    "lint:prettier": "prettier --write .",
-    "lint": "npx eslint src/*.js",
-    "lint:eslint": " npx eslint --fix ."
-  },
-  "browserslist": "> 0.3%, last 2 versions, Firefox ESR, not dead",
   "keywords": [
     "HTML",
     "CSS",
@@ -19,25 +11,32 @@
     "OpenProps",
     "Parcel"
   ],
+  "license": "ISC",
   "author": "Stephen Ikuomola",
   "type": "module",
-  "license": "ISC",
-  "devDependencies": {
+  "source": "index.html",
+  "scripts": {
+    "lint": "npx eslint src/*.js",
+    "lint:eslint": " npx eslint --fix .",
+    "lint:prettier": "prettier --write .",
+    "start": "parcel index.html"
+  },
+  "browserslist": "> 0.3%, last 2 versions, Firefox ESR, not dead",
+  "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.4.1",
+    "eslint-plugin-jsdoc": "^50.5.0",
+    "eslint-plugin-package-json": "^0.15.6",
+    "eslint-plugin-perfectionist": "^4.0.3",
+    "eslint-plugin-prettier": "^5.2.1"
+  },
+  "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@parcel/packager-raw-url": "^2.13.0",
     "@parcel/transformer-webmanifest": "^2.13.0",
     "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsdoc": "^50.5.0",
-    "eslint-plugin-perfectionist": "^4.0.3",
-    "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.12.0",
+    "jsonc-eslint-parser": "^2.4.0",
     "parcel": "^2.13.0",
     "prettier": "3.3.3"
-  },
-  "dependencies": {
-    "eslint-plugin-package-json": "^0.15.6",
-    "jsonc-parser": "^3.3.1"
   }
 }
