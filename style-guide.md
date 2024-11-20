@@ -18,15 +18,15 @@ The introduction section with drop down navigation should be responsive across a
 
 ```css
 --size-0: 0.125rem;
---size-16: 0.375rem; 
+--size-16: 0.375rem;
 --size-17: 0.625rem;
 --size-18: 0.75rem;
 --size-19: 0.875rem;
 --size-20: 2.25rem;
 --size-21: 2.75rem;
---size-22: 3.5rem; 
+--size-22: 3.5rem;
 --size-23: 6rem;
---size-24: 7rem; 
+--size-24: 7rem;
 --size-25: 8rem;
 --size-26: 9rem;
 --size-27: 11rem;
@@ -38,7 +38,6 @@ The introduction section with drop down navigation should be responsive across a
 --size-33: 24rem;
 --size-px-0: 0px;
 --size-px-16: 1px;
-
 ```
 
 ## Display
@@ -61,7 +60,7 @@ The introduction section with drop down navigation should be responsive across a
 --radius-8: 6px;
 --radius-9: 8px;
 --radius-10: 10px;
---radius-11: 12px; 
+--radius-11: 12px;
 --radius-12: 14.9px;
 --radius-13: 20px;
 --radius-14: 24px;
@@ -77,80 +76,116 @@ The introduction section with drop down navigation should be responsive across a
 ## Favicon Links
 
 ```html
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicons/site.webmanifest">
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicons/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicons/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicons/favicon-16x16.png"
+/>
+<link rel="manifest" href="/assets/favicons/site.webmanifest" />
 ```
 
 ## Typography
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ```css
 --ff-epilogue-sans-serif: var(--ff-epilogue), sans-serif;
 --ff-epilogue: 'Epilogue';
---font-style: normal; 
+--font-style: normal;
 --font-lineheight-000: 1;
 --font-lineheight-6: 1.625;
---font-letterspacing-00: -.025em;
---font-letterspacing-8: 0em; 
+--font-letterspacing-00: -0.025em;
+--font-letterspacing-8: 0em;
 --font-letterspacing-9: 0.1em;
---font-letterspacing-10: -.028em;
---font-letterspacing-11: -.062em;
+--font-letterspacing-10: -0.028em;
+--font-letterspacing-11: -0.062em;
 
 /* Font Sizes */
 --font-size-9: 0.875rem;
 --font-size-px-000: 18px;
 --font-size-fluid-4: clamp(1rem, 1.044rem + -0.188vw, 0.875rem);
 --font-size-fluid-5: clamp(2.25rem, 1.282rem + 4.131vw, 5rem);
---font-size-fluid-6: clamp(1rem, 0.956rem + 0.188vw, 1.125rem); 
-
+--font-size-fluid-6: clamp(1rem, 0.956rem + 0.188vw, 1.125rem);
 ```
 
 ## Resets
 
 ```css
 * {
-	margin: 0; 
-	padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
-*, *::before, *::after {
-	box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-	overflow-x: hidden;
-	/* The style below prevents font-style inflation */
-	text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-webkit-text-size-adjust: none;
- }
- 
-/* Set core root defaults */
-html:focus-within { 
-	scroll-behavior: smooth; 
+  overflow-x: hidden;
+  /* The style below prevents font-style inflation */
+  text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
 }
 
- p, h1, h2, h3, h4, h5, h6 {
-	 overflow: break-word;
- }
- 
- /* Balance text wrappings on the heading */
- h1, h2, h3, h4, h5, h6 {
-	 text-wrap: balance; 
- }
- 
- h1, h2, h3, h4, button, input, label {
-	 line-height: 1.1;
- }
- 
- img, picture {
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow: break-word;
+}
+
+/* Balance text wrappings on the heading */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+img,
+picture {
   max-width: 100%;
   height: auto;
   display: var(--block);
@@ -161,8 +196,8 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-	/* Please set the font-size on the body to be 18px */
-	font-size: var(--font-size-px-000);
+  /* Please set the font-size on the body to be 18px */
+  font-size: var(--font-size-px-000);
 }
 
 /* We make sure that the text areas without rows are not tiny */
@@ -171,8 +206,11 @@ textarea:not([rows]) {
 }
 
 /* Inherits fonts for input and buttons */
-input, button, textarea, select { 
-	font: inherit; 
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
 /* A elements that don't have a class get default styles */
