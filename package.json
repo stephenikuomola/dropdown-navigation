@@ -4,7 +4,7 @@
   "description": "![Design preview for the Intro section with dropdown navigation coding challenge](./assets/design/desktop-preview.jpg)",
   "source": "index.html",
   "scripts": {
-     "start": "parcel index.html"
+    "start": "parcel index.html"
   },
   "browserslist": "> 0.3%, last 2 versions, Firefox ESR, not dead",
   "keywords": [
@@ -19,6 +19,8 @@
   "author": "Stephen Ikuomola",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.13.0",
+    "@parcel/transformer-webmanifest": "^2.13.0",
     "parcel": "^2.13.0"
   }
 }
