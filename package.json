@@ -1,0 +1,14 @@
+{
+  "name": "intro-section-with-dropdown-navigation-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the Intro section with dropdown navigation coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "source": "index.html",
+  "scripts": {
+    
+  },
+  "browserslist": "> 0.3%, last 2 versions, Firefox ESR, not dead",
+  "keywords": ["HTML", "CSS", "JavaScript", "Prettier", "ESLint", "OpenProps", "Parcel"],
+  "author": "Stephen Ikuomola",
+  "license": "ISC"
+}
