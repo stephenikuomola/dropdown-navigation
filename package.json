@@ -1,8 +1,7 @@
 {
   "name": "intro-section-with-dropdown-navigation-main",
   "version": "1.0.0",
-  "description": "![Design preview for the Intro section with dropdown navigation coding challenge](./design/desktop-preview.jpg)",
-  "main": "index.js",
+  "description": "![Design preview for the Intro section with dropdown navigation coding challenge](./assets/design/desktop-preview.jpg)",
   "source": "index.html",
   "scripts": {
     
