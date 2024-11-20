@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "![Design preview for the Intro section with dropdown navigation coding challenge](./assets/design/desktop-preview.jpg)",
   "source": "index.html",
-  "scripts": {},
+  "scripts": {
+     "start": "parcel index.html"
+  },
   "browserslist": "> 0.3%, last 2 versions, Firefox ESR, not dead",
   "keywords": [
     "HTML",
