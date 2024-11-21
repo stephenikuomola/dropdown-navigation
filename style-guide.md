@@ -174,6 +174,11 @@ h6 {
   text-wrap: balance;
 }
 
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
 h1,
 h2,
 h3,
@@ -185,7 +190,7 @@ label {
 }
 
 img,
-picture {
+picture, video, canvas, svg {
   max-width: 100%;
   height: auto;
   display: var(--block);
@@ -228,4 +233,18 @@ a:not([class]) {
 li {
   list-style-type: none;
 }
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 ```
