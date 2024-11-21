@@ -16,7 +16,7 @@ export default [
   jsdoc.configs['flat/recommended'],
   comments.recommended,
   {
-    "@eslint-community/eslint-comments/no-unused-disable": 'error'
+    '@eslint-community/eslint-comments/no-unused-disable': 'error'
   },
   {
     ignores: ['node_modules/**', '**/dist', '.parcel-cache/**']
