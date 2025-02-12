@@ -27,7 +27,8 @@
     "eslint-plugin-jsdoc": "^50.5.0",
     "eslint-plugin-package-json": "^0.15.6",
     "eslint-plugin-perfectionist": "^4.0.3",
-    "eslint-plugin-prettier": "^5.2.1"
+    "eslint-plugin-prettier": "^5.2.1",
+    "open-props": "^1.7.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

@@ -14,7 +14,7 @@ The introduction section with drop down navigation should be responsive across a
 --almost-black: hsl(0, 0%, 8%);
 ```
 
-## Gap
+## Sizes
 
 ```css
 --size-0: 0.125rem;
@@ -53,7 +53,7 @@ The introduction section with drop down navigation should be responsive across a
 --inline-grid: inline-grid;
 ```
 
-## Radius
+## Borders
 
 ```css
 --radius-7: 4px;
