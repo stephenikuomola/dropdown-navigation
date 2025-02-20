@@ -21,6 +21,10 @@
 /* Prop Fonts */
 @import "npm:open-props/fonts.min.css";
 
+
+/* Easing Timing functions */
+@import "npm:open-props/easings.min.css"; 
+
 :root {
   /* Colors */
   --white: hsl(0, 0%, 100%);
@@ -292,11 +296,10 @@ button[class="nav-menu__account__login"]:before {
   display: var(--block);
   background-color: var(--almost-purple);
   padding-block: 2px;
-  transition: width 0.4s ease 0s;
+  transition: width 0.4s var(--ease-elastic-out-2);
   transform: translateX(-50%);
 }
 
-/* Please come back to this */
 button[class="nav-menu__account__login"] {
   padding-block-end: var(--size-3);
 }
@@ -353,12 +356,12 @@ button[aria-label="close menu button"] {
   top: 1.37rem;
 }
 
-button[class="menuBtn"][aria-expanded="false"] {
-  display: var(--block);
+button[class="menuBtn"] {
+  display: var(--hidden);
 }
 
-button[class="menuBtn"][aria-expanded="true"] {
-  display: var(--hidden);
+button[class~="active"] {
+  display: var(--block);
 }
 
 div[class~="dropshadow-overlay"] {
@@ -385,24 +388,29 @@ div[class~="dropshadow-overlay"][class~="active"] {
   height: 100dvh;
   width: 64dvw;
   background-color: var(--almost-white);
-  flex-direction: column;
-  gap: var(--size-7);
-  padding-block-start: var(--size-10);
-  display: var(--hidden);
+  transform: translate(100%);
+  transition: transform 0.4s var(--ease-out-5);
+}
+
+.nav-menu div {
+   display: var(--flex);
+   flex-direction: column;
+   gap: var(--size-7);
+   padding-block-start: var(--size-10);
 }
 
 .nav-menu.active {
-  display: var(--flex);
+  transform: translate(0);
 }
 
-.nav-menu > ul {
+.nav-menu > div > ul {
   display: var(--flex);
   flex-direction: column;
   margin-inline-start: var(--size-5);
   margin-inline-end: 1.25rem;
 }
 
-.nav-menu > ul:not(:last-child) {
+.nav-menu > div > ul:not(:last-child) {
   gap: var(--size-3);
 }
 
@@ -419,7 +427,6 @@ div[class~="dropshadow-overlay"][class~="active"] {
   font-style: normal;
   font-weight: var(--font-weight-4);
   line-height: var(--font-lineheight-0);
-  margin-block-end: var(--size-7);
 }
 
 .nav-menu__links button,
@@ -516,9 +523,9 @@ ul[id~="features-menu"] a[href="#Planning"]::before {
   border-radius: var(--radius-22);
   border: var(--border-size-2) solid var(--medium-gray);
   transition:
-    background-color 0.4s ease,
-    border 0.4s ease,
-    color 0.4s ease;
+    background-color 0.4s var(--ease-elastic-out-2),
+    border 0.4s var(--ease-elastic-out-2),
+    color 0.4s var(--ease-elastic-out-2);
 }
 
 /* The main section */
@@ -601,7 +608,7 @@ button[class="company-introduction__learnmoreBtn"] {
 /* Media query for tablet view to remove the mobile menu */
 @custom-media --md-n-above (width >= 768px);
 @media (--md-n-above) {
-  button[class~="menuBtn"][aria-expanded] {
+  button[class~="menuBtn"] {
     display: var(--hidden);
   }
 
@@ -611,20 +618,26 @@ button[class="company-introduction__learnmoreBtn"] {
   }
 
   .nav-menu {
-    display: var(--flex);
-    flex-direction: row;
     align-items: center;
     position: unset;
     background-color: transparent;
     z-index: unset;
     width: unset;
     height: unset;
-    padding-block-start: unset;
     flex-grow: 1;
     gap: unset;
+    transform: unset;
+    transition: unset;
   }
 
-  .nav-menu > ul {
+  .nav-menu > div {
+    display: var(--flex);
+    flex-direction: row;
+    align-items: center;
+    padding-block-start: unset; 
+  }
+
+  .nav-menu > div > ul {
     flex-direction: row;
     margin-inline: unset;
   }
@@ -637,11 +650,11 @@ button[class="company-introduction__learnmoreBtn"] {
     margin-inline-start: var(--size-1);
   }
 
-  .nav-menu > ul:not(:last-child) {
+  .nav-menu > div > ul:not(:last-child) {
     gap: var(--size-7);
   }
 
-  .nav-menu > .nav-menu__links ul {
+  .nav-menu > div > .nav-menu__links ul {
     position: absolute;
     top: 45px;
     background-color: var(--white);
@@ -675,7 +688,7 @@ button[class="company-introduction__learnmoreBtn"] {
     margin-block-end: var(--size-5);
   }
 
-  .nav-menu > .nav-menu__account {
+  .nav-menu > div > .nav-menu__account {
     gap: var(--size-fluid-3);
     align-items: center;
     margin-inline-start: auto;
@@ -727,7 +740,7 @@ button[class="company-introduction__learnmoreBtn"] {
     margin-inline-start: var(--size-1);
   }
 
-  .nav-menu > ul:not(:last-child) {
+  .nav-menu > div > ul:not(:last-child) {
     gap: var(--size-8);
   }
 }
