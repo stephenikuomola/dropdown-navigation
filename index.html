@@ -47,6 +47,156 @@
     <title>Dropdown Navigation</title>
   </head>
   <body>
-    <main></main>
+    <!-- Structure the header section-->
+    <header>
+      <!-- The overlay overlay or drop-shadow that appears when the open menu button is clicked -->
+      <nav class="nav-container">
+        <a href="#" class="logo" aria-label="snap company logo"></a>
+        <button
+          type="button"
+          class="menuBtn"
+          aria-label="open menu button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <img
+            src="/assets/images/icon-menu.svg"
+            alt=""
+            aria-hidden="true"
+            class="open-menu"
+            width="32"
+            height="18"
+          />
+        </button>
+        <button
+          type="button"
+          class="menuBtn"
+          aria-label="close menu button"
+          aria-expanded="true"
+          aria-controls="nav-menu"
+        >
+          <img
+            src="/assets/images/icon-close-menu.svg"
+            alt=""
+            aria-hidden="true"
+            class="close-menu"
+            width="26"
+            height="26"
+          />
+        </button>
+        <div aria-hidden="true" id="nav-menu" class="nav-menu">
+          <ul class="nav-menu__links">
+            <li>
+              <button
+                type="button"
+                aria-expanded="false"
+                aria-controls="features-menu"
+                class="nav-menu__links__features"
+              >
+                Features
+              </button>
+              <ul id="features-menu" class="nav-menu__links__nav-submenu">
+                <li>
+                  <a href="#TodoList">Todo List</a>
+                </li>
+                <li>
+                  <a href="#Calendar">Calendar</a>
+                </li>
+                <li>
+                  <a href="#Reminders">Reminders</a>
+                </li>
+                <li>
+                  <a href="#Planning">Planning</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button
+                type="button"
+                aria-expanded="false"
+                aria-controls="company-menu"
+                class="nav-menu__links__company"
+              >
+                Company
+              </button>
+              <ul id="company-menu" class="nav-menu__links__nav-submenu">
+                <li>
+                  <a href="#History">History</a>
+                </li>
+                <li>
+                  <a href="#OurTeam">Our Team</a>
+                </li>
+                <li>
+                  <a href="#Blog">Blog</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#Careers" class="nav-menu__links__careers">Careers</a>
+            </li>
+            <li>
+              <a href="#Contact" class="nav-menu__links__About">About</a>
+            </li>
+          </ul>
+          <ul class="nav-menu__account">
+            <li>
+              <button type="button" class="nav-menu__account__login">
+                Login
+              </button>
+            </li>
+            <li>
+              <button type="button" class="nav-menu__account__register">
+                Register
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="dropshadow-overlay"></div>
+    </header>
+    <!-- Structure the main element -->
+    <main>
+      <section>
+        <div class="company-introduction">
+          <h1 class="company-introduction__heading">Make remote work</h1>
+          <p class="company-introduction__paragraph">
+            Get your team in sync, no matter your location. Streamline
+            processes,create team rituals, and watch productivity soar.
+          </p>
+          <button class="company-introduction__learnmoreBtn">Learn more</button>
+        </div>
+        <ul class="company-sponsors">
+          <li>
+            <img src="/assets/images/client-databiz.svg" alt="databiz logo" />
+          </li>
+          <li>
+            <img
+              src="/assets/images/client-audiophile.svg"
+              alt="audiophile logo"
+            />
+          </li>
+          <li>
+            <img src="/assets/images/client-meet.svg" alt="meet logo" />
+          </li>
+          <li>
+            <img src="/assets/images/client-maker.svg" alt="maker logo" />
+          </li>
+        </ul>
+      </section>
+      <picture>
+        <source
+          media="(max-width: 750px)"
+          srcset="/assets/images/image-hero-mobile.png"
+        />
+        <source
+          media="(min-width: 1000px)"
+          srcset="/assets/images/image-hero-desktop.png"
+        />
+        <img
+          src="./assets/images/image-hero-mobile.png"
+          alt="illustration of a remote worker"
+        />
+      </picture>
+    </main>
   </body>
 </html>
