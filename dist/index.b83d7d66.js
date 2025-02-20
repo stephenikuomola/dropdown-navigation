@@ -585,7 +585,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"6GCUi":[function(require,module,exports,__globalThis) {
-console.log('Hello');
 
 },{}]},["lFQN6","6GCUi"], "6GCUi", "parcelRequire94c2")
 
