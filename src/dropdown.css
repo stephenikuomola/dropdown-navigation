@@ -23,9 +23,11 @@
 
 :root {
   /* Colors */
+  --white: hsl(0, 0%, 100%);
   --almost-white: hsl(0, 0%, 98%);
   --medium-gray: hsl(0, 0%, 41%);
   --almost-black: hsl(0, 0%, 8%);
+  --almost-purple: hsl(277, 42%, 51%);
 
   /* Display */
   --hidden: none;
@@ -53,6 +55,7 @@
   --radius-19: 36px;
   --radius-20: 38px;
   --radius-21: 40px;
+  --radius-22: 14px;
 
   /* Sizes */
   --size-0: 0.125rem;
@@ -77,6 +80,9 @@
   --size-px-0: 0px;
   --size-px-16: 1px;
 
+  /* Fluid Sizes */
+  --size-fluid-11: clamp(1.3125rem, 0.1901rem + 4.7887vw, 4.5rem);
+
   /* Typography */
   --ff-epilogue-sans-serif: var(--ff-epilogue), sans-serif;
   --ff-epilogue: "Epilogue";
@@ -93,7 +99,7 @@
   --font-size-9: 0.875rem;
   --font-size-px-000: 18px;
   --font-size-fluid-4: clamp(1rem, 1.044rem + -0.188vw, 0.875rem);
-  --font-size-fluid-5: clamp(2.25rem, 1.282rem + 4.131vw, 5rem);
+  --font-size-fluid-5: clamp(1.9rem, 1.282rem + 4.131vw, 5rem);
   --font-size-fluid-6: clamp(1rem, 0.956rem + 0.188vw, 1.125rem);
 }
 
@@ -115,6 +121,8 @@ html {
   text-size-adjust: none;
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
+  font-family: var(--ff-epilogue-sans-serif);
+  font-size: var(--font-size-px-000);
 }
 
 /* Set core root defaults */
@@ -174,6 +182,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* Please set the font-size on the body to be 18px */
   font-size: var(--font-size-px-000);
+  background-color: var(--almost-white);
+  overflow-x: hidden;
 }
 
 /* We make sure that the text areas without rows are not tiny */
@@ -187,6 +197,28 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+/* Remove the text-decoration style for all anchor elements */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* All anchor and button elements have an outline of none when focused */
+a:focus,
+button:focus {
+  outline: none;
+}
+
+/* All buttons should have this style */
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 /* A elements that don't have a class get default styles */
@@ -203,6 +235,7 @@ a:not([class]) {
 /* Remove the mark of the list items */
 li {
   list-style-type: none;
+  color: inherit;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */
@@ -217,5 +250,495 @@ li {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile Navigation -- Header Styles */
+.nav-container {
+  margin-inline: auto;
+  display: var(--flex);
+  align-items: center;
+  justify-content: space-between;
+  width: min(91.47%, 84.92rem);
+  padding-block-end: var(--size-fluid-11);
+  padding-block-start: var(--size-fluid-2);
+}
+
+a[class="logo"] {
+  cursor: pointer;
+  background-image: url(../assets/images/logo.svg);
+  width: 7.48rem;
+  height: 2.19rem;
+  display: block;
+  background-size: cover;
+}
+
+a[class="logo"]:focus-visible {
+  outline: var(--border-size-2) dashed var(--almost-purple);
+  outline-offset: 2px;
+}
+
+button[class~="menuBtn"]:focus-visible {
+  outline: var(--border-size-2) solid var(--almost-purple);
+  outline-offset: 3px;
+}
+
+button[class="nav-menu__account__login"]:before {
+  position: absolute;
+  left: 50%;
+  top: 19;
+  width: 0;
+  content: "";
+  display: var(--block);
+  background-color: var(--almost-purple);
+  padding-block: 2px;
+  transition: width 0.4s ease 0s;
+  transform: translateX(-50%);
+}
+
+/* Please come back to this */
+button[class="nav-menu__account__login"] {
+  padding-block-end: var(--size-3);
+}
+
+@custom-media --mouse (hover) and (pointer: fine);
+
+@media (--mouse) {
+  button {
+    cursor: pointer;
+  }
+
+  .nav-menu__links button:is(:hover),
+  .nav-menu__links > li:nth-last-child(-n + 2) a:is(:hover) {
+    color: var(--almost-black);
+  }
+
+  button[class="nav-menu__account__login"]:is(:hover) {
+    color: var(--almost-black);
+  }
+
+  button[class="nav-menu__account__login"]:is(:hover, :focus-visible) {
+    position: relative;
+  }
+
+  button[class="nav-menu__account__login"]:is(:hover, :focus-visible):before {
+    width: 50px;
+  }
+
+  button[class="company-introduction__learnmoreBtn"]:is(
+      :hover,
+      :focus-visible
+    ) {
+    background-color: var(--almost-white);
+    color: var(--almost-black);
+  }
+
+  .nav-menu__account
+    button[class="nav-menu__account__register"]:is(:hover, :focus-visible) {
+    background-color: var(--almost-purple);
+    color: var(--almost-white);
+    border: var(--border-size-2) solid var(--almost-purple);
+  }
+}
+
+.nav-menu__links a:focus-visible {
+  outline: var(--border-size-2) dashed var(--almost-purple);
+  outline-offset: 2px;
+}
+
+button[aria-label="close menu button"] {
+  position: fixed;
+  z-index: var(--layer-4);
+  right: 1.25rem;
+  top: 1.37rem;
+}
+
+button[class="menuBtn"][aria-expanded="false"] {
+  display: var(--block);
+}
+
+button[class="menuBtn"][aria-expanded="true"] {
+  display: var(--hidden);
+}
+
+div[class~="dropshadow-overlay"] {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: var(--layer-2);
+  width: 100dvw;
+  height: 100dvh;
+  background-color: var(--almost-black);
+  opacity: 0.75;
+  display: var(--hidden);
+}
+
+div[class~="dropshadow-overlay"][class~="active"] {
+  display: var(--block);
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--layer-3);
+  height: 100dvh;
+  width: 64dvw;
+  background-color: var(--almost-white);
+  flex-direction: column;
+  gap: var(--size-7);
+  padding-block-start: var(--size-10);
+  display: var(--hidden);
+}
+
+.nav-menu.active {
+  display: var(--flex);
+}
+
+.nav-menu > ul {
+  display: var(--flex);
+  flex-direction: column;
+  margin-inline-start: var(--size-5);
+  margin-inline-end: 1.25rem;
+}
+
+.nav-menu > ul:not(:last-child) {
+  gap: var(--size-3);
+}
+
+.nav-menu__account {
+  font-size: var(--font-size-fluid-0);
+  line-height: var(--font-lineheight-0);
+  font-style: normal;
+  font-weight: var(--font-weight-4);
+}
+
+.nav-menu__links {
+  color: var(--medium-gray);
+  font-size: var(--font-size-fluid-0);
+  font-style: normal;
+  font-weight: var(--font-weight-4);
+  line-height: var(--font-lineheight-0);
+  margin-block-end: var(--size-7);
+}
+
+.nav-menu__links button,
+.nav-menu__links > li:nth-last-child(-n + 2) a {
+  transition: 0.4s color ease;
+}
+
+.nav-menu__links ul {
+  display: var(--hidden);
+}
+
+ul[id~="features-menu"] li,
+ul[id~="company-menu"] li {
+  display: var(--flex);
+  margin-block-end: var(--size-3);
+  align-items: center;
+}
+
+ul[id~="features-menu"] li {
+  padding-inline-start: var(--size-8);
+}
+
+ul[id~="company-menu"] li {
+  padding-inline-start: var(--size-7);
+}
+
+ul[id~="features-menu"] li:first-child,
+ul[id~="company-menu"] li:first-child {
+  margin-block-start: var(--size-5);
+}
+
+.nav-menu__links button,
+ul[id~="features-menu"] a {
+  position: relative;
+}
+
+ul[id~="features-menu"] a::before,
+.nav-menu__links button::after {
+  display: inline-block;
+  position: absolute;
+}
+
+ul[id~="features-menu"] a::before {
+  width: 1rem;
+  height: 1rem;
+  top: -2px;
+  left: -23px;
+}
+
+.nav-menu__links button::after {
+  margin-inline-start: var(--size-3);
+  width: 0.625rem;
+  height: 0.375rem;
+  top: -2px;
+}
+
+ul[id~="features-menu"] a[href="#TodoList"]::before {
+  content: url(../assets/images/icon-todo.svg);
+}
+
+ul[id~="features-menu"] a[href="#Calendar"]::before {
+  content: url(../assets/images/icon-calendar.svg);
+}
+
+ul[id~="features-menu"] a[href="#Reminders"]::before {
+  content: url(../assets/images/icon-reminders.svg);
+}
+
+ul[id~="features-menu"] a[href="#Planning"]::before {
+  content: url(../assets/images/icon-planning.svg);
+}
+
+.nav-menu__links button[aria-expanded="false"]::after {
+  content: url(../assets/images/icon-arrow-down.svg);
+}
+
+.nav-menu__links button[aria-expanded="true"]::after {
+  content: url(../assets/images/icon-arrow-up.svg);
+}
+
+.nav-menu__links button:focus-visible {
+  outline: var(--border-size-2) solid var(--almost-purple);
+  outline-offset: 3px;
+}
+
+.nav-menu__account button {
+  color: var(--medium-gray);
+  width: 100%;
+  position: relative;
+}
+
+.nav-menu__account button[class="nav-menu__account__register"] {
+  padding-block: var(--size-3);
+  border-radius: var(--radius-22);
+  border: var(--border-size-2) solid var(--medium-gray);
+  transition:
+    background-color 0.4s ease,
+    border 0.4s ease,
+    color 0.4s ease;
+}
+
+/* The main section */
+main {
+  display: var(--flex);
+  flex-direction: column;
+  gap: var(--size-fluid-4);
+}
+
+section {
+  order: 2;
+  margin-inline: auto;
+  width: min(91.5%, 33.75rem);
+  text-align: center;
+}
+
+picture img {
+  margin-inline: auto;
+}
+
+.company-introduction__heading {
+  color: var(--almost-black);
+  font-size: 1.9rem;
+  font-weight: var(--font-weight-7);
+  font-style: normal;
+  line-height: var(--font-lineheight-00);
+  margin-block-end: var(--size-fluid-2);
+}
+
+.company-introduction__paragraph {
+  color: var(--medium-gray);
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: var(--font-weight-4);
+  line-height: var(--font-lineheight-2);
+  margin-block-end: var(--size-fluid-2);
+}
+
+button[class="company-introduction__learnmoreBtn"] {
+  background-color: var(--almost-black);
+  color: var(--almost-white);
+  margin-block-end: var(--size-8);
+  padding-inline: var(--size-fluid-3);
+  padding-block: var(--size-fluid-1);
+  border-radius: var(--radius-12);
+  border: var(--border-size-1) solid var(--almost-black);
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: var(--font-weight-7);
+  line-height: var(--font-lineheight-1);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.company-sponsors {
+  display: var(--flex);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.8rem;
+  margin-block-end: var(--size-8);
+}
+
+/* A subtle animation when users open the mobile navigation menu */
+@custom-media --md-n-below (width < 768px);
+@media (--md-n-below) {
+  @keyframes animateNavLinks {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Media query for tablet view to remove the mobile menu */
+@custom-media --md-n-above (width >= 768px);
+@media (--md-n-above) {
+  button[class~="menuBtn"][aria-expanded] {
+    display: var(--hidden);
+  }
+
+  .nav-container {
+    justify-content: unset;
+    gap: var(--size-fluid-4);
+  }
+
+  .nav-menu {
+    display: var(--flex);
+    flex-direction: row;
+    align-items: center;
+    position: unset;
+    background-color: transparent;
+    z-index: unset;
+    width: unset;
+    height: unset;
+    padding-block-start: unset;
+    flex-grow: 1;
+    gap: unset;
+  }
+
+  .nav-menu > ul {
+    flex-direction: row;
+    margin-inline: unset;
+  }
+
+  .nav-menu__links {
+    margin-block-end: unset;
+  }
+
+  .nav-menu__links button:after {
+    margin-inline-start: var(--size-1);
+  }
+
+  .nav-menu > ul:not(:last-child) {
+    gap: var(--size-7);
+  }
+
+  .nav-menu > .nav-menu__links ul {
+    position: absolute;
+    top: 45px;
+    background-color: var(--white);
+    border-radius: var(--radius-3);
+    box-shadow: var(--shadow-2);
+  }
+
+  .nav-menu__links > li:nth-child(-n + 2) {
+    position: relative;
+  }
+
+  ul[id~="features-menu"] {
+    min-width: 9.5625rem;
+    right: -19px;
+  }
+
+  ul[id~="company-menu"] {
+    min-width: 7.25rem;
+  }
+
+  ul[id~="features-menu"] li {
+    padding-inline-start: var(--size-8);
+  }
+
+  ul[id~="company-menu"] li {
+    padding-inline-start: var(--size-5);
+  }
+
+  ul[id~="company-menu"] li:last-child,
+  ul[id~="features-menu"] li:last-child {
+    margin-block-end: var(--size-5);
+  }
+
+  .nav-menu > .nav-menu__account {
+    gap: var(--size-fluid-3);
+    align-items: center;
+    margin-inline-start: auto;
+  }
+
+  button[class="nav-menu__account__login"] {
+    padding-block-end: unset;
+  }
+
+  .nav-menu__account button[class="nav-menu__account__register"] {
+    border: var(--border-size-2) solid var(--almost-black);
+    padding-inline: var(--size-fluid-1);
+  }
+}
+
+/* Media query for desktop view */
+@custom-media --lg-n-above (width >= 1024px);
+@media (--lg-n-above) {
+  main {
+    flex-direction: row;
+    width: min(79.5%, 71.57rem);
+    margin-inline: auto;
+  }
+
+  section {
+    width: unset;
+    order: unset;
+    text-align: left;
+    align-self: center;
+    margin-block-start: 7rem;
+  }
+
+  .company-introduction__heading {
+    font-size: var(--size-fluid-11);
+    margin-block-end: var(--size-fluid-3);
+  }
+
+  .company-introduction__paragraph {
+    font-size: 1rem;
+    margin-block-end: var(--size-fluid-3);
+  }
+
+  .company-sponsors {
+    margin-block-end: unset;
+    justify-content: unset;
+  }
+
+  .nav-menu__links button:after {
+    margin-inline-start: var(--size-1);
+  }
+
+  .nav-menu > ul:not(:last-child) {
+    gap: var(--size-8);
+  }
+}
+
+@custom-media --xl-n-above (width >= 1300px);
+@media (--xl-n-above) {
+  main {
+    gap: var(--size-fluid-7);
+  }
+
+  .company-introduction__paragraph {
+    font-size: 1.125rem;
   }
 }
