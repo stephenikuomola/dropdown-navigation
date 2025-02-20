@@ -54,7 +54,7 @@
         <a href="#" class="logo" aria-label="snap company logo"></a>
         <button
           type="button"
-          class="menuBtn"
+          class="menuBtn active"
           aria-label="open menu button"
           aria-expanded="false"
           aria-controls="nav-menu"
@@ -72,7 +72,6 @@
           type="button"
           class="menuBtn"
           aria-label="close menu button"
-          aria-expanded="true"
           aria-controls="nav-menu"
         >
           <img
@@ -85,71 +84,73 @@
           />
         </button>
         <div aria-hidden="true" id="nav-menu" class="nav-menu">
-          <ul class="nav-menu__links">
-            <li>
-              <button
-                type="button"
-                aria-expanded="false"
-                aria-controls="features-menu"
-                class="nav-menu__links__features"
-              >
-                Features
-              </button>
-              <ul id="features-menu" class="nav-menu__links__nav-submenu">
-                <li>
-                  <a href="#TodoList">Todo List</a>
-                </li>
-                <li>
-                  <a href="#Calendar">Calendar</a>
-                </li>
-                <li>
-                  <a href="#Reminders">Reminders</a>
-                </li>
-                <li>
-                  <a href="#Planning">Planning</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <button
-                type="button"
-                aria-expanded="false"
-                aria-controls="company-menu"
-                class="nav-menu__links__company"
-              >
-                Company
-              </button>
-              <ul id="company-menu" class="nav-menu__links__nav-submenu">
-                <li>
-                  <a href="#History">History</a>
-                </li>
-                <li>
-                  <a href="#OurTeam">Our Team</a>
-                </li>
-                <li>
-                  <a href="#Blog">Blog</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#Careers" class="nav-menu__links__careers">Careers</a>
-            </li>
-            <li>
-              <a href="#Contact" class="nav-menu__links__About">About</a>
-            </li>
-          </ul>
-          <ul class="nav-menu__account">
-            <li>
-              <button type="button" class="nav-menu__account__login">
-                Login
-              </button>
-            </li>
-            <li>
-              <button type="button" class="nav-menu__account__register">
-                Register
-              </button>
-            </li>
-          </ul>
+          <div>
+            <ul class="nav-menu__links">
+              <li>
+                <button
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="features-menu"
+                  class="nav-menu__links__features"
+                >
+                  Features
+                </button>
+                <ul id="features-menu" class="nav-menu__links__nav-submenu">
+                  <li>
+                    <a href="#TodoList">Todo List</a>
+                  </li>
+                  <li>
+                    <a href="#Calendar">Calendar</a>
+                  </li>
+                  <li>
+                    <a href="#Reminders">Reminders</a>
+                  </li>
+                  <li>
+                    <a href="#Planning">Planning</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="company-menu"
+                  class="nav-menu__links__company"
+                >
+                  Company
+                </button>
+                <ul id="company-menu" class="nav-menu__links__nav-submenu">
+                  <li>
+                    <a href="#History">History</a>
+                  </li>
+                  <li>
+                    <a href="#OurTeam">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="#Blog">Blog</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#Careers" class="nav-menu__links__careers">Careers</a>
+              </li>
+              <li>
+                <a href="#Contact" class="nav-menu__links__About">About</a>
+              </li>
+            </ul>
+            <ul class="nav-menu__account">
+              <li>
+                <button type="button" class="nav-menu__account__login">
+                  Login
+                </button>
+              </li>
+              <li>
+                <button type="button" class="nav-menu__account__register">
+                  Register
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
       <div class="dropshadow-overlay"></div>
