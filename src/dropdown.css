@@ -184,7 +184,6 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Please set the font-size on the body to be 18px */
   font-size: var(--font-size-px-000);
   background-color: var(--almost-white);
   overflow-x: hidden;
@@ -595,7 +594,19 @@ button[class="company-introduction__learnmoreBtn"] {
   @keyframes animateNavLinks {
     from {
       opacity: 0;
-      transform: translateX(2px);
+      transform: translateX(100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes unAnimateNavLinks {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
     }
 
     to {

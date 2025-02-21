@@ -100,6 +100,34 @@ function handleMobileNavigation(nav, evtObj) {
     mobileNavBtn?.previousElementSibling?.classList.add('active');
     navMenu?.classList.remove('active');
   }
+
+  // Call the animate function to animate the navigation links and account buttons
+  animateNavMenu();
+}
+
+/**
+ * This function animates the navigation links and the account buttons
+ */
+function animateNavMenu() {
+  const navLinksButtons =
+    /**@type {NodeListOf<HTMLLIElement>}*/ document.querySelectorAll(
+      '.nav-menu__container > ul > li'
+    );
+  const DELAYDIVIDER = 25;
+
+  navLinksButtons.forEach(function (navLinkButton, index) {
+    // When the user clicks the first time there is no animation
+    // When they click again there is an existing animation
+    const animaName = /** @type {HTMLLIElement} */ (navLinkButton).style
+      .animationName;
+    if (animaName.includes('animateNavLinks')) {
+      /**@type {HTMLLIElement} */ (navLinkButton).style.animation =
+        `unAnimateNavLinks 1s ease reverse forwards ${index / DELAYDIVIDER}s`;
+    } else {
+      /** @type {HTMLLIElement} */ (navLinkButton).style.animation =
+        `animateNavLinks 0.8s ease forwards ${index / DELAYDIVIDER}s`;
+    }
+  });
 }
 
 App();
