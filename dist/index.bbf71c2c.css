@@ -1784,7 +1784,19 @@ button[class="company-introduction__learnmoreBtn"] {
   @keyframes animateNavLinks {
     from {
       opacity: 0;
-      transform: translateX(2px);
+      transform: translateX(100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes unAnimateNavLinks {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
     }
 
     to {
