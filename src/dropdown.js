@@ -118,14 +118,13 @@ function animateNavMenu() {
   navLinksButtons.forEach(function (navLinkButton, index) {
     // When the user clicks the first time there is no animation
     // When they click again there is an existing animation
-    const animaName = /** @type {HTMLLIElement} */ (navLinkButton).style
-      .animationName;
-    if (animaName.includes('animateNavLinks')) {
-      /**@type {HTMLLIElement} */ (navLinkButton).style.animation =
-        `unAnimateNavLinks 1s ease reverse forwards ${index / DELAYDIVIDER}s`;
+    const fillMode = /** @type {HTMLLIElement} */ (navLinkButton).style
+      .animationFillMode;
+    if (fillMode.includes('forwards')) {
+      /**@type {HTMLLIElement} */ (navLinkButton).style.animation = ``;
     } else {
       /** @type {HTMLLIElement} */ (navLinkButton).style.animation =
-        `animateNavLinks 0.8s ease forwards ${index / DELAYDIVIDER}s`;
+        `animate 0.8s ease forwards ${index / DELAYDIVIDER}s`;
     }
   });
 }
