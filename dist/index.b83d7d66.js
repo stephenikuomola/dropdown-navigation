@@ -672,7 +672,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
  * @param {HTMLElement | null} nav - The navigation element to be handled.
  * @returns {void}
  */ function dropDownComponent(nav) {
-    console.log(nav);
     const menu = /**@type {HTMLUListElement}*/ nav?.querySelector('.nav-menu__links');
     const btnControls = /**@type {NodeListOf<HTMLButtonElement>} */ document.querySelectorAll('.nav-menu__links button');
     const submenus = /** @type {HTMLUListElement[]} */ [];
@@ -688,10 +687,48 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
             // Attach the event listeners
             // When the user clicks the menu button, so we can open the submenu.
             btnControl.addEventListener('click', handleBtnDropdown.bind(null, btnControls, submenus));
-            // When the button is expanded we want to be able to use arrow keys, Home, and End Keys to navigate into the submenu.
+            // When the button is expanded we want to be able to use arrow keys to navigate into the submenu.
             btnControl.addEventListener('keydown', handleBtnKeyDown.bind(null, btnControls, submenus, useArrowKeys));
+            // When we are in the submenu we want to navigate between elements in the submenus
+            submenu.addEventListener('keydown', handleSubMenuKeyDown.bind(null, btnControls, submenus, useArrowKeys));
         }
     });
+}
+/**
+ * This function handles the functionality of the arrow keys when the user navigates inside the submenu
+ * @param {NodeList} btnControls - The buttons
+ *  @param {HTMLUListElement[]} submenus - The submenus
+ * @param {boolean} useArrowKeys - The current state of the arrows keys
+ * @param {KeyboardEvent} evtObj - The keyboard event object
+ * @returns {void}
+ */ function handleSubMenuKeyDown(btnControls, submenus, useArrowKeys, evtObj) {
+    // We want to get the element that currently has focus when the event is triggered in the submenu
+    const activeElement = document.activeElement;
+    // Using the eventListener attached to the submenu we can navigate to its sibling and obtain the button.
+    const btn = /**@type {HTMLButtonElement }*/ evtObj.currentTarget.previousElementSibling;
+    // We want be sure that the button element is an instance of HTMLButtonElement
+    if (!(btn instanceof HTMLButtonElement)) return;
+    // We need the index of the button of its submenu
+    const btnIndex = Array.from(btnControls).indexOf(btn);
+    // We can get all the links in the submenu by using the index of the button element to get the submenu we are on then find all the links in that submenu
+    const menuLinks = Array.from(submenus[btnIndex].querySelectorAll('a'));
+    // Check if the active element exists
+    if (activeElement) {
+        // If the active element is an instance of the anchor element which is what we want we can proceed and if not return and stop the execution of the function.
+        if (!(activeElement instanceof HTMLAnchorElement)) return;
+        // So from all the anchor elements in the array menuLinks we want to know the active anchor element's index.
+        const activeElementIndex = menuLinks.indexOf(activeElement);
+        // We the user presses the escape key or button
+        if (evtObj.key === 'Escape') {
+            // Change the nodeList of an button to an array of button elements.
+            const btnArray = Array.from(btnControls);
+            // Check if the element in the button array exist
+            if (btnArray[btnIndex]) // Move the focus back to the button element
+            /**@type {HTMLButtonElement}*/ btnArray[btnIndex].focus();
+            // Then we can close the submenu element
+            toggleBtnExpanded(btnIndex, false, submenus, btnControls);
+        } else if (useArrowKeys) controlFocusByKey(evtObj, menuLinks, activeElementIndex);
+    }
 }
 /**
  * This function handles the functionality of the arrow keys, Home, and End Keys when the user navigates into the submenu.
@@ -703,25 +740,25 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
  */ function handleBtnKeyDown(btnControls, submenus, useArrowKeys, evtObj) {
     // We need to get the element that currently has focus when the user keys down or presses any key on the button element.
     const activeElement = document.activeElement;
+    // The currentTarget gives us the button element since that is the element that the event listener is attached to.
     const btn = /**@type {HTMLButtonElement}*/ evtObj.currentTarget;
+    // We can get the index of the Array of buttons
     const btnIndex = Array.from(btnControls).indexOf(btn);
     if (activeElement) {
-        // We want to get the index of the active element that current has focus.
+        // We want to get the index of the active element that current has focus which is the button element.
         const activeElementIndex = Array.from(btnControls).indexOf(activeElement);
         if (evtObj.key === 'Escape') toggleBtnExpanded(btnIndex, false, submenus, btnControls);
-        else if (useArrowKeys && btnIndex === activeElementIndex && evtObj.key === 'ArrowDown') {
-            evtObj.preventDefault();
-            submenus[btnIndex].querySelector('a')?.focus();
-        } else if (useArrowKeys) controlFocusByKey(evtObj, btnControls, activeElementIndex);
+        else if (useArrowKeys && btnIndex === activeElementIndex && evtObj.key === 'ArrowDown') submenus[btnIndex].querySelector('a')?.focus();
+        else if (useArrowKeys) controlFocusByKey(evtObj, btnControls, activeElementIndex);
     }
 }
 /**
  * This function controls the focus based on the keys pressed by the user Arrow Up/Down, Home, End, and Arrow Left/Right
  * @param {KeyboardEvent} evtObj - The event object
- * @param {NodeList} btnControls - The buttons
+ * @param {NodeList | HTMLElement[]} collection - The buttons
  * @param {number} activeElementIndex - The index
  * @returns {void}
- */ function controlFocusByKey(evtObj, btnControls, activeElementIndex) {
+ */ function controlFocusByKey(evtObj, collection, activeElementIndex) {
     const ONE = 1;
     const ZERO = 0;
     switch(evtObj.key){
@@ -730,22 +767,22 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
             evtObj.preventDefault();
             if (activeElementIndex > -ONE) {
                 const prevIndex = Math.max(ZERO, activeElementIndex - ONE);
-                /**@type {HTMLButtonElement}*/ btnControls[prevIndex].focus();
+                /**@type {HTMLButtonElement}*/ collection[prevIndex].focus();
             }
             break;
         case 'ArrowDown':
         case 'ArrowRight':
             evtObj.preventDefault();
             if (activeElementIndex > -ONE) {
-                const nextIndex = Math.min(btnControls.length - ONE, activeElementIndex + ONE);
-                /**@type {HTMLButtonElement}*/ btnControls[nextIndex].focus();
+                const nextIndex = Math.min(collection.length - ONE, activeElementIndex + ONE);
+                /**@type {HTMLButtonElement}*/ collection[nextIndex].focus();
             }
             break;
         case 'Home':
-            /**@type {HTMLButtonElement}*/ btnControls[ZERO].focus();
+            /**@type {HTMLButtonElement}*/ collection[ZERO].focus();
             break;
         case 'End':
-            /**@type {HTMLButtonElement}*/ btnControls[btnControls.length - ONE].focus();
+            /**@type {HTMLButtonElement}*/ collection[collection.length - ONE].focus();
             break;
         default:
     }
@@ -757,9 +794,13 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
  * @param {Event} evtObj - The event object.
  * @returns {void}
  */ function handleBtnDropdown(btnControls, submenus, evtObj) {
+    // The target gives us the button clicked
     const btn = /**@type {HTMLButtonElement}*/ evtObj.target;
+    // We get the index of the button element from the ModeList of buttons
     const btnIndex = Array.from(btnControls).indexOf(btn);
+    // We want to know if the button is currently expanded as at when clicked
     const isBtnExpanded = btn?.getAttribute('aria-expanded') === 'true';
+    // We simply toggle the button and show the submenu
     toggleBtnExpanded(btnIndex, !isBtnExpanded, submenus, btnControls);
 }
 /**
