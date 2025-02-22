@@ -603,7 +603,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
  * @returns {void}
  */ function handleMediaQuery(query) {
     const isMobileDevice = /** @type {boolean}*/ window.matchMedia(query).matches;
-    console.log(isMobileDevice);
     const navMenu = /**@type {HTMLDivElement | null} */ document.querySelector('.nav-menu');
     navMenu?.setAttribute('aria-hidden', `${isMobileDevice ? 'true' : 'false'}`);
 }
@@ -630,10 +629,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     if (!mobileNavBtn) return;
     // Get the dropshadow-overlayElement
     const dropShadowOverlay = /**@type {HTMLDivElement | null}*/ document.querySelector('.dropshadow-overlay');
-    console.log(dropShadowOverlay);
     // On mobile devices the value of aria-expanded is check and we need to manipulate it dynamically depending on the state.
     const closedMenu = /**@type {Boolean} */ mobileNavBtn.getAttribute('aria-expanded') === 'false' || false;
-    console.log(closedMenu);
     // Using the closedMenu variable we want to remove the aria-expanded attribute on the clicked mobileNavBtn
     mobileNavBtn.removeAttribute('aria-expanded');
     // Remove the active class from the mobileNavBtn
@@ -646,10 +643,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
         mobileNavBtn?.nextElementSibling?.setAttribute('aria-expanded', `${closedMenu}`);
         mobileNavBtn?.nextElementSibling?.classList.add('active');
         navMenu?.classList.add('active');
+        dropShadowOverlay?.classList.add('active');
     } else {
         mobileNavBtn?.previousElementSibling?.setAttribute('aria-expanded', `${closedMenu}`);
         mobileNavBtn?.previousElementSibling?.classList.add('active');
         navMenu?.classList.remove('active');
+        dropShadowOverlay?.classList.remove('active');
     }
     // Call the animate function to animate the navigation links and account buttons
     animateNavMenu();
@@ -676,7 +675,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     const btnControls = /**@type {NodeListOf<HTMLButtonElement>} */ document.querySelectorAll('.nav-menu__links button');
     const submenus = /** @type {HTMLUListElement[]} */ [];
     const useArrowKeys = /**@type {Boolean} */ true;
-    let openIndex = /**@type {number|null} */ null;
     btnControls.forEach(function(btnControl) {
         // We want to be sure that we are clicking on the button element
         if (btnControl.hasAttribute('aria-controls')) {
@@ -693,6 +691,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
             submenu.addEventListener('keydown', handleSubMenuKeyDown.bind(null, btnControls, submenus, useArrowKeys));
         }
     });
+    menu.addEventListener('focusout', onFocusOut.bind(null, btnControls, submenus));
 }
 /**
  * This function handles the functionality of the arrow keys when the user navigates inside the submenu
@@ -826,7 +825,23 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
         submenu.style.display = display ? 'block' : 'none';
     }
 }
-App(); // openIndex = isExpanded ? index : null
+/**
+ * The function handles when the menu no longer has focus.
+ * @param {NodeList} btnControls - The buttons
+ * @param {HTMLUListElement[]} submenus - The submenus
+ * @param {FocusEvent} evtObj - The focus event
+ * @returns {void}
+ */ function onFocusOut(btnControls, submenus, evtObj) {
+    // When any element in the menu has just gained focus we want to know that element.
+    const hasGainedFocus = /**@type {HTMLElement}*/ evtObj.relatedTarget;
+    // We want to know if the menu element contains any element that has just gained focus.
+    const menuContainsFocus = /**@type {HTMLUListElement}*/ evtObj.currentTarget.contains(hasGainedFocus);
+    if (!menuContainsFocus) // Loop over the buttons close the submenu
+    btnControls.forEach(function(__, index, btnControls) {
+        toggleBtnExpanded(index, false, submenus, btnControls);
+    });
+}
+App();
 
 },{}]},["lFQN6","6GCUi"], "6GCUi", "parcelRequire94c2")
 
