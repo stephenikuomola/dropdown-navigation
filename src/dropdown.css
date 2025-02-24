@@ -21,9 +21,8 @@
 /* Prop Fonts */
 @import "npm:open-props/fonts.min.css";
 
-
 /* Easing Timing functions */
-@import "npm:open-props/easings.min.css"; 
+@import "npm:open-props/easings.min.css";
 
 :root {
   /* Colors */
@@ -392,10 +391,10 @@ div[class~="dropshadow-overlay"][class~="active"] {
 }
 
 .nav-menu div {
-   display: var(--flex);
-   flex-direction: column;
-   gap: var(--size-7);
-   padding-block-start: var(--size-10);
+  display: var(--flex);
+  flex-direction: column;
+  gap: var(--size-7);
+  padding-block-start: var(--size-10);
 }
 
 .nav-menu.active {
@@ -633,7 +632,7 @@ button[class="company-introduction__learnmoreBtn"] {
     display: var(--flex);
     flex-direction: row;
     align-items: center;
-    padding-block-start: unset; 
+    padding-block-start: unset;
   }
 
   .nav-menu > div > ul {
