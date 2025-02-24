@@ -190,7 +190,10 @@ label {
 }
 
 img,
-picture, video, canvas, svg {
+picture,
+video,
+canvas,
+svg {
   max-width: 100%;
   height: auto;
   display: var(--block);
@@ -237,7 +240,7 @@ li {
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
   *,
   *::before,
