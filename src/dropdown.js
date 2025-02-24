@@ -373,3 +373,5 @@ function onFocusOut(btnControls, submenus, evtObj) {
 }
 
 App();
+
+// Please implement functionality to close mobile nav when the user clicks on the visible drop shadow.

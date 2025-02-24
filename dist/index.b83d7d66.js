@@ -841,7 +841,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
         toggleBtnExpanded(index, false, submenus, btnControls);
     });
 }
-App();
+App(); // Please implement functionality to close mobile nav when the user clicks on the visible drop shadow.
 
 },{}]},["lFQN6","6GCUi"], "6GCUi", "parcelRequire94c2")
 
