@@ -247,4 +247,5 @@ li {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
 ```
