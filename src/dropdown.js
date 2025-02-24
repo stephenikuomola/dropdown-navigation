@@ -9,9 +9,14 @@ function App() {
   const navElement = /**@type {HTMLElement | null} */ (
     document.querySelector('.nav-container')
   );
+  const dropShadow = /**@type {HTMLElement | null} */ (
+    document.querySelector('.dropshadow-overlay')
+  );
+  console.log(dropShadow);
   handleMediaQuery(mediaQuery);
   navComponent(navElement);
   dropDownComponent(navElement);
+  dropShadowComponent(navElement, dropShadow);
 }
 
 /**
@@ -370,6 +375,37 @@ function onFocusOut(btnControls, submenus, evtObj) {
       toggleBtnExpanded(index, false, submenus, btnControls);
     });
   }
+}
+
+/**
+ * This function will close the mobile nav menu when the user click on the dropshadow
+ * @param {HTMLElement | null} nav - The nav element
+ * @param {HTMLElement | null} dropshadow - The dropshadow element
+ * @returns {void}
+ */
+function dropShadowComponent(nav, dropshadow) {
+  dropshadow?.addEventListener('click', function () {
+    // Get the navigation menu element
+    const navMenu = nav?.querySelector('.nav-menu');
+    // We need the button element that is currently visible on the page.
+    const mobileNavBtn = nav?.querySelector('button[class~="active"]');
+    // On mobile devices the value of aria-expanded is checked and we need to manipulate it dynamically depending on the state.
+
+    const openedMenu = /**@type {Boolean} */ (
+      mobileNavBtn?.getAttribute('aria-expanded') === 'false' || false
+    );
+    mobileNavBtn?.setAttribute('aria-expanded', `${!openedMenu}`);
+    mobileNavBtn?.classList.remove('active');
+    mobileNavBtn?.previousElementSibling?.setAttribute(
+      'aria-expanded',
+      `${openedMenu}`
+    );
+
+    console.log(mobileNavBtn?.previousElementSibling);
+    mobileNavBtn?.previousElementSibling?.classList.add('active');
+    dropshadow.classList.remove('active');
+    navMenu?.classList.remove('active');
+  });
 }
 
 App();
