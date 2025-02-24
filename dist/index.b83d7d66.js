@@ -866,7 +866,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
         navMenu?.classList.remove('active');
     });
 }
-App(); // Please implement functionality to close mobile nav when the user clicks on the visible drop shadow.
+App();
 
 },{}]},["lFQN6","6GCUi"], "6GCUi", "parcelRequire94c2")
 

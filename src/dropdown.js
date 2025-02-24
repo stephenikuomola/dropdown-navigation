@@ -409,5 +409,3 @@ function dropShadowComponent(nav, dropshadow) {
 }
 
 App();
-
-// Please implement functionality to close mobile nav when the user clicks on the visible drop shadow.
