@@ -9,7 +9,7 @@
 
 <br />
 
-![image-hero-desktop.png](./assets/images/image-hero-desktop.png)
+![desktop-preview.png](./assets/design/desktop-preview.jpg)
 
 ### Prerequisites
 
