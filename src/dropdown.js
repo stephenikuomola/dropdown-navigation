@@ -12,7 +12,6 @@ function App() {
   const dropShadow = /**@type {HTMLElement | null} */ (
     document.querySelector('.dropshadow-overlay')
   );
-  console.log(dropShadow);
   handleMediaQuery(mediaQuery);
   navComponent(navElement);
   dropDownComponent(navElement);
@@ -348,7 +347,6 @@ function toggleBtnExpanded(index, isExpanded, submenus, btnControls) {
  */
 function toggleMenu(submenu, display) {
   if (submenu) {
-    console.log(display);
     submenu.style.display = display ? 'block' : 'none';
   }
 }
